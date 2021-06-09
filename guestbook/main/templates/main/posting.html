@@ -24,24 +24,35 @@
             position: relative;
             background-color: #af2222;
             width: 70px; height: 30px;
-            margin-top: 30px;
             border: none; border-radius: 5px;
             cursor: pointer; position: relative; top: 60px; left: 100px;
         }
-        a > #deleteBtn { text-decoration: none; color: #fff; }
+        #deleteBtn { text-decoration: none; color: #fff; }
         #btn {
             width: 70px; height: 30px;
-            margin-top: 30px;
+            margin-top: 30px; color: #fff;
             border: none; border-radius: 5px;
             background-color: black;
-            cursor: pointer;
+            cursor: pointer; margin-bottom: 30px;
         }
         a > #btn { text-decoration: none; color: #fff; }
+
+        /******************************* reply-wrapper *******************************/
+        .reply-wrapper { text-align: center; margin: 20px auto; width: 80%; border: 1px solid #aaa; }
+        .reply-wrapper h3 { margin: 30px 0; }
+        .reply-wrapper .reply-wrap { width: 60%; display: flex; margin: 20px 75px; }
+        
+        .reply_text { border-top: 10px solid #111; width: 80%; margin-bottom: 50px;}
+        .reply_text .reply_user { padding: 10px 5px 0 5px; border-bottom: 1px solid #aaa; margin-bottom: 5px;}
+        .reply_text .reply_user .reply_time { font-size: 12px; }
+        .reply_text .reply_user .reply_box { padding: 10px 5px 0 5px; }
+        .reply_text .reply_user .reply_box input#replyDeleteBtn { position: relative; left: 96%; bottom: 23px; border: none; background-color: #111; color: #fff; border-radius: 5px; width: 30px; height: 27px; cursor: pointer;}
+
     </style>
 </head>
 <body>
     <h1>POSTING</h1>
-    <div class="title-wrapper">
+    <section class="title-wrapper">
 
         <div class="title-wrap obj">
             <div class="title">TITLE : </div>
@@ -71,7 +82,59 @@
             </a>
         </div>
         
-    </div>
+        <section class="reply-wrapper">
+            <h3>댓글달기</h3>
+            <form action="{% url 'main:reply' posting.pk %}" method="POST" id="reply">
+                {% csrf_token %}
+                <div class="reply-wrap">
+                    <p>Name</p><input type="text" name="reply_name" id="reply_name" value="">
+                    <p>Pw</p><input type="password" name="reply_pw" id="reply_pw">
+                </div>
+            
+                <textarea name="reply" id="reply" cols="30" rows="10" style="max-width: 80%; max-height: 60px; min-width: 80%; min-height: 60px;"></textarea>
+                
+                <div class="replyBtn"><input type="submit" id="btn" value="작성하기"></div>
+            </form>
+        </section>
+
+        <section class="reply_text">
+            {% for comment in posting.comments.all %}
+            <div class="reply_user">
+                <span class="reply_name">{{ comment.name }}</span>
+                <span class="reply_time">{{ comment.created_at }}</span>
+                <div class="reply_box">
+                    <div class="reply_comment">{{ comment.reply }}</div>
+                    <a href="{% url 'main:reply_delete' comment.pk %}"><input type="submit" id="replyDeleteBtn" value="X"></a>
+            </div>
+            </div>
+            {% endfor %}
+        </section>
+
     <!-- title-wrapper -->
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </html>
 </body>
