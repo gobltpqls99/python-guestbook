@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>posting</title>
+    <style>
+        * { color: #111; margin: 0 auto; }
+        a { text-decoration: none; }
+        h1 { margin-top: 100px; text-align: center;  }
+        .title-wrapper { width: 1000px; margin-top: 70px; }
+        .obj { width: 80%; display: flex; border-bottom: 1px solid #aaa; padding: 10px; }
+        .title-wrap .title { width: 15%;  }
+        .title-wrap .posting-title { width: 85%; }
+        .name-wrap .name { width: 15%;  }
+        .name-wrap .posting-name { width: 85%; }
+        .content-wrap { width: 800px; height: 100%; border-bottom: 1px solid #aaa;  padding: 10px; }
+        .content-wrap .content { width: 15%; }
+        .content-wrap .posting-content { width: 85%; height: 100%; line-break: anywhere;}
+
+        .btn-wrap { width: 146px; height: 100%; margin: 0 auto; }
+        #deleteBtn {
+            position: relative;
+            background-color: #af2222;
+            width: 70px; height: 30px;
+            margin-top: 30px;
+            border: none; border-radius: 5px;
+            cursor: pointer; position: relative; top: 60px; left: 100px;
+        }
+        a > #deleteBtn { text-decoration: none; color: #fff; }
+        #btn {
+            width: 70px; height: 30px;
+            margin-top: 30px;
+            border: none; border-radius: 5px;
+            background-color: black;
+            cursor: pointer;
+        }
+        a > #btn { text-decoration: none; color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>POSTING</h1>
+    <div class="title-wrapper">
+
+        <div class="title-wrap obj">
+            <div class="title">TITLE : </div>
+            <div class="posting-title"> {{ posting.postTitle }}</div>
+        </div>
+
+        <div class="name-wrap obj">
+            <div class="name">NAME : </div>
+            <div class="posting-name">{{ posting.name }}</div>
+        </div>
+
+        <div class="content-wrap obj">
+            <div class="content">CONTENT : </div>
+            <div class="posting-content">{{ posting.content }}</div>
+        </div>
+        
+        <a href="{% url 'main:delete' posting.pk %}">
+            <button class="deleteBtn" id="deleteBtn">삭제</button>
+        </a>
+        
+        <div class="btn-wrap">
+            <a href="{% url 'main:write' %}?pk={{ posting.pk }}">
+                <button class="btn" id="btn">수정</button>
+            </a>
+            <a href="{% url 'main:index' %}">
+                <button class="btn" id="btn">목록</button>
+            </a>
+        </div>
+        
+    </div>
+    <!-- title-wrapper -->
+    </html>
+</body>

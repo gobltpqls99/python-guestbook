@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guest-book</title>
+    <style>
+        * {
+        margin: 0 auto;
+        text-align: center;
+        color: #111;
+        }
+        ul, li { list-style: none; }
+        a:link {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        i { color: #111; }
+
+        h1 { margin-top: 100px; }
+
+        .wrapper {
+            width: 50%;
+            max-width: 1000px;
+            min-width: 700px;
+            margin-top: 70px;
+            text-align: center;
+            border-top: 10px solid #111;
+        }
+
+        .wrapper .oritable { width: 100%; }
+
+        /* .wrapper .oritable > th { margin: 0 auto; } */
+        .wrapper .oritable td.title { margin: 0 auto; }
+
+        th { border-bottom: 1px solid #000; padding: 7px; }
+        .oritable th.title { width: 50%; }
+        .oritable .tablebook td { border-bottom: 1px solid #333; padding: 6px; }
+        
+        #btn{
+        width: 70px; height: 30px;
+        margin-top: 30px;
+        border: none; border-radius: 5px;
+        background-color: black;
+        cursor: pointer;
+        color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>게시판</h1>
+    <div class="wrapper">
+
+        <table class="oritable">
+            <th class="title">Title</th>
+            <th class="date">날짜</th>
+            <th class="name">작성자</th>
+
+            {% for list in postlist %}
+            <tr class="tablebook">
+                <td class="title"><a href="{% url 'main:posting' list.pk %}">{{ list.postTitle }}</a></td>
+                <td title="date">{{ list.created_at }}</td>
+                <td title="name">{{ list.name }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    <a href="{% url 'main:write' %}">
+        <button class="btn" id="btn">글쓰기</button>
+    </a>
+</body>
+</html>
