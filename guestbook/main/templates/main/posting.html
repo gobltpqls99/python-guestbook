@@ -55,11 +55,11 @@
 
         <div class="content-wrap obj">
             <div class="content">CONTENT : </div>
-            <div class="posting-content">{{ posting.content }}</div>
+            <div class="posting-content">{{ posting.content|linebreaks }}</div>
         </div>
         
         <a href="{% url 'main:delete' posting.pk %}">
-            <button class="deleteBtn" id="deleteBtn">삭제</button>
+            <button class="deleteBtn" id="deleteBtn">삭제</button> 
         </a>
         
         <div class="btn-wrap">
