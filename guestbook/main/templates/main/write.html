@@ -32,9 +32,20 @@
             
             {% csrf_token %}
             
-            <div><p>Title</p><input name="title" type="text" id="title" value="{{ posting.postTitle }}" autofocus></div>
-            <div><p>Name</p><input name="name" type="text" id="name" value="{{ posting.name }}"></div>
-            <div><p>Pw</p><input name="pw" type="password" id="pw"></div>
+            <div>
+                <p>Title</p>
+                <input name="title" type="text" id="title" value="{{ posting.postTitle }}" autofocus>
+            </div>
+
+            <div>
+                <p>Name</p>
+                <input name="name" type="text" id="name" value="{{ posting.name }}">
+            </div>
+            
+            <div>
+                <p>Pw</p>
+                <input name="pw" type="password" id="pw">
+            </div>
 
             <textarea name="content" id="" cols="30" rows="10" style="max-width: 500px; max-height: 300px; min-width: 500px; min-height: 300px;">{{ posting.content }}</textarea>
 

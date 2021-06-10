@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        a#sign_in { text-decoration: none; color: #111; transition: all 0.2s; text-align: right;}
+        .login_wrapper { width: 100%; height: 100%; margin: 70px auto; text-align: center; }
+        #login_form { width: 300px; margin: 40px auto; }
+        input#id_form { width: 100%; height: 20px; border: 1px solid #aaa; color:#777;}
+        input#pw_form { width: 100%; height: 20px; margin-top: 5px; border: 1px solid #aaa; color:#777;}
+        #login_btn { width: 100%; height: 30px; border: none; background-color: #111; color: #fff; margin-top: 10px; cursor: pointer; }
+        a > p { font-size: 14px; }
+
+
+        input#id_form, input#pw_form { padding: 5px; }
+
+    </style>
+</head>
+<body>
+    <div class="login_wrapper">
+        <h1>LOGIN</h1>
+        <form action="{% url 'main:signin'%}" method="POST" id="login_form">
+            <div id="id">
+                <input type="text" name="id_form" id="id_form" placeholder="로그인">
+            </div>
+            <div id="pw">
+                <input type="password" name="pw_form" id="pw_form" placeholder="비밀번호">
+            </div>
+            <a href="{% url 'main:signin' %}" id="sign_in"><p>회원가입</p></a>
+            <a href=""><input type="submit" id="login_btn" value="로그인"></a>
+        </form>
+    </div>
+</body>
+</html>
