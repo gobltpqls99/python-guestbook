@@ -38,7 +38,7 @@ def join(request):
     if request.method=="GET" :
         return render(request, "account/join.html")
     elif request.method == "POST":
-        new_user = User.objects.create_user(username="username", password = "password")
+        new_user = User.objects.create_user(username=request.POST['username'], password = request.POST['password'])
         new_user.save()
         return render(request, "account/join.html")
 
