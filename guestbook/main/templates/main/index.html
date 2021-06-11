@@ -23,7 +23,7 @@
         
         i { color: #111; }
         
-        .loginwrapper { width: 130px; display: flex; position: relative; top: 30px; left: 400px; }
+        .loginwrapper { width: 140px; display: flex; position: relative; top: 30px; left: 400px; }
 
         #login :hover { text-decoration: underline; }
         #signin :hover { text-decoration: underline; }
@@ -60,11 +60,21 @@
     </style>
 </head>
 <body>
+
+
+
     <div class="loginwrapper">
-        <a href="{% url 'main:login' %}" id="login"><span>로그인</span></a>
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'account:logout' %}" id="logout">로그아웃</a>
+    {% else %}
+        <a href="{% url 'account:login' %}" id="login">로그인</a>
         <span>/</span>
-        <a href="{% url 'main:signin' %}" id="signin"><span>회원가입</span></a>
+        <a href="{% url 'account:join' %}" id="join">회원가입</a>
+    {% endif %}
     </div>
+
+
     <h1>게시판</h1>
     <div class="wrapper">
 
@@ -84,8 +94,12 @@
         </table>
     </div>
 
-    <a href="{% url 'main:write' %}">
-        <button class="btn" id="btn">글쓰기</button>
-    </a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'main:write' %}">
+            <button class="btn" id="btn">글쓰기</button>
+        </a>
+    {% endif %}
+
+    
 </body>
 </html>
