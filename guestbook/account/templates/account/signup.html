@@ -20,20 +20,20 @@
 
         <form action="" method="POST" id="join">
             {% csrf_token %}
-            <div class="id text">아이디</div>
-            <input type="text" id="join_id">
+            <div class="username text">아이디</div>
+            <input type="text" id="username" name="username">
 
-            <div class="pw text">비밀번호</div>
-            <input type="password" id="join_pw">
+            <div class="password text">비밀번호</div>
+            <input type="password" id="password" name="password">
 
-            <div class="re_pw text">비밀번호 확인</div>
-            <input type="password" id="join_re_pw">
+            <div class="password2 text">비밀번호 확인</div>
+            <input type="password" id="password2" name="password2">
 
             <div class="email text">이메일</div>
-            <input type="email" id="join_email">
+            <input type="email" id="email" name="email">
 
             <div class="name text">이름</div>
-            <input type="text" id="join_name">
+            <input type="text" id="name" name="name">
 
             <div class="btn"><input type="submit" id="join_btn" value="가입하기"></div>
         </form>
